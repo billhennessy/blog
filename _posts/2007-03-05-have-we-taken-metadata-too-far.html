@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: Have We Taken Metadata Too Far
+author:
+  display_name: William Hennessy
+  login: bhennessy
+  email: billhennessy@me.com
+  url: http://hennessysview.com
+author_login: bhennessy
+author_email: billhennessy@me.com
+author_url: http://hennessysview.com
+wordpress_id: 5
+wordpress_url: http://wp.billhennessy.com/?p=5
+date: '2007-03-05 20:14:53 -0600'
+date_gmt: '2007-03-06 04:14:53 -0600'
+categories:
+- Latest
+tags: []
+comments:
+- id: 1147
+  author: craven fringe
+  author_email: craven@fringe.com.ph
+  author_url: http://www.congresscheck.com/category/irs
+  date: '2007-10-20 21:53:55 -0500'
+  date_gmt: '2007-10-21 04:53:55 -0500'
+  content: Programming today is a race between software engineers striving to build
+    bigger and better idiot-proof programs, and the Universe trying to produce bigger
+    and better idiots So far, the Universe is winning -- Rich Cook
+---
+<p>Recently, I&rsquo;ve had the task of explaining to clients why it&rsquo;s more difficult and error-prone to change their web applications&rsquo; configuration metadata than to change code. They don&rsquo;t take my story well. After all, the whole idea of many web applications is <em>configurability</em>. By that I mean that a non-programmer can change, add, or remove values that cause either business rules, workflows, navigation flows, or content of a web site to change.</p>
+<p>Once upon a time, we hard coded everything, save for <em>transactional data</em>, the stuff that the web site captures through user interaction (name, address, phone number, buy a book, etc.), or the data that arrives in files or through web services for display on the web site. Whenever a client wanted to change, say, the color of the GO button, a programmer coded the change, a tester tested, and someone released the code to production.</p>
+<p>The idea behind configurability was to eliminate all this programming so that the customer could make the change and be done with it.</p>
+<p>Then came security, process, and compliance.</p>
+<p>Between Sarbanes-Oxley, SAS70, PCI DSS, and CMMi, the practice of making system configuration change directly to production went the way of 8.25 inch floppies. Metadata changes must be treated like code: defined, approved, developed, tested, staged and tested again, then released. But data are not code. Data are values arranged in columns and rows, usually identified by a sequential, unique number. Even if you solve the unique number problem with GUIDs, you still have to create crude SQL scripts, apply them to an environment and test. If the client wants changes or finds defects, you have to refresh the database (blowing away any test case data created), change the script, and re-apply it to the test environment. And so on.</p>
+<p>This whole process would actually be easier were these metadata hard coded into tiny artifacts.</p>
+<p>I think my next design will contain such artifacts. Perhaps they will leverage the Windows Workflow Foundation. Instead of changing data, I&rsquo;ll simply reorder the artifacts or tweak a rule and move the changes through the testing assembly line. Less risk, faster code (since there are no database round trips), and I don&rsquo;t have to train clients how highly structured, mature processes work.</p>
